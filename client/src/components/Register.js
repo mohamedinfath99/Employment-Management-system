@@ -65,8 +65,7 @@ const Register = () => {
 
   return (
     <div className='container'>
-      <NavLink to="/">Home</NavLink>
-
+      
       <form className='mt-4'>
         <div className='row'>
 
@@ -88,6 +87,7 @@ const Register = () => {
           <div className="mb-3 col-lg-6 col-md-6 col-12">
             <label for="gender" className="form-label">Gender</label>
             <select name="gender" className="form-select" onChange={setData} value={inputValue.gender} id="gender">
+              <option value="">--Select the gender--</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>
@@ -131,11 +131,11 @@ const Register = () => {
             <label htmlFor="experience" className="form-label">Experience</label>
             <select name="experience" className="form-control" onChange={setData} value={inputValue.experience} id="experience">
               <option value="">--Select Years of Experience--</option>
-              <option value="1 Year">1 Year</option>
-              <option value="2 Years">2 Years</option>
-              <option value="3 Years">3 Years</option>
-              <option value="4 Years">4 Years</option>
-              <option value="5 Years or Above">5 Years or Above</option>
+              <option value="1">1 </option>
+              <option value="2">2 </option>
+              <option value="3">3 </option>
+              <option value="4">4 </option>
+              <option value="5 or Above">5  or Above</option>
             </select>
           </div>
 
@@ -150,8 +150,8 @@ const Register = () => {
             <textarea className="form-control" onChange={setData} value={inputValue.personalNotes} name="personalNotes" id="exampleInputPassword1" rows={4} />
           </div>
 
-          <div>
-            <span>Cancel</span>
+          <div className='registerButton d-flex justify-content-end'>
+            <span className='cancelBtn'>Cancel</span>
             <button type="submit" className="btn btn-primary" onClick={adddata}>Add People</button>
           </div>
 

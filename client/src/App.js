@@ -6,7 +6,7 @@ import HomePage from './components/HomePage';
 import Register from './components/Register';
 import { BrowserRouter, Routes, Route,  } from "react-router-dom";
 import Edit from './components/Edit';
-import Details from './components/Details';
+
 
 
 
@@ -19,7 +19,6 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/edit/:id" element={<Edit />} />
-          <Route path="/view/:id" element={<Details />} />
         </Routes>
       </BrowserRouter>
     </div>

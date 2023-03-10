@@ -14,3 +14,35 @@
 .right_view h3{
     font-size: 21px;
 }
+
+.navbar-brand{
+    margin-left: 120px;
+    margin-top: 20px;
+}
+
+.navbar{
+    border-bottom: 0.1px solid gray;
+}
+
+.add_btn{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.form-select{
+    margin-right: 50px;
+    width: 20px;
+}
+
+.registerButton{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-right: 10px;
+}
+
+.cancelBtn{
+    margin-right: 10px;
+    color: blue;
+}

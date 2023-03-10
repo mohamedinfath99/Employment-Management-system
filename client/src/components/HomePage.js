@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const HomePage = () => {
-    const [getuserdata, setUserdata] = useState([]);
+    const [userList, setUserList] = useState([]);
+    const [filterType, setFilterType] = useState("");
 
-    const getdata = async () => {
+    const fetchData = async () => {
         const res = await fetch("/api/v1/users", {
             method: "GET",
             headers: {
@@ -12,40 +13,51 @@ const HomePage = () => {
             }
         });
         const data = await res.json();
-        setUserdata(data);
+        setUserList(data);
     }
 
     useEffect(() => {
-        getdata();
+        fetchData();
     }, []);
 
     const deleteUser = async (id) => {
-        const res2 = await fetch(`/api/v1/users/${id}`, {
+        const res = await fetch(`/api/v1/users/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
             }
         });
-        const deleteData = await res2.json();
-        console.log(deleteData);
-        if (res2.status === 422 || !deleteData) {
+        const deleteData = await res.json();
+        if (res.status === 422 || !deleteData) {
             console.log("error");
         } else {
             console.log("user deleted");
-            getdata();
+            fetchData();
         }
     }
+
+    const filteredList = filterType ? userList.filter(user => user.employeeType === filterType) : userList;
 
     return (
         <div className='mt-5'>
             <div className='container'>
-                <div className='add_btn mt-2'>
+                <div className='add_btn mt-2 d-flex justify-content-end align-items-center'>
+
+                    <select style={{fontSize: '16px', width: '200px'}} name="employeeType" className="form-select ms-2" id="employeeType" value={filterType} onChange={(e) => setFilterType(e.target.value) }>
+                        <option value="">--Employee Types--</option>
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        <option value="Contract Basis">Contract Basis</option>
+                        <option value="Others">Others</option>
+                    </select>
+
                     <NavLink to="/register">
-                        <button className='btn btn-primary'>Add People</button>
+                        <button className='btn btn-primary ms-2'>Add People</button>
                     </NavLink>
+
                 </div>
 
-                {getuserdata.length > 0 &&
+                {filteredList.length > 0 &&
                     <table className="table mt-4">
                         <thead>
                             <tr className="table-light">
@@ -58,7 +70,7 @@ const HomePage = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {getuserdata.map((user, index) => (
+                            {filteredList.map((user, index) => (
                                 <tr key={user._id}>
                                     <td>{user.displayName}</td>
                                     <td>{String(index + 1).padStart(3, '0')}</td>
@@ -76,6 +88,9 @@ const HomePage = () => {
                         </tbody>
                     </table>
                 }
+                {filteredList.length === 0 && (
+                    <p className="text-center mt-4">No results found for selected employee type.</p>
+                )}
             </div>
         </div>
     );
