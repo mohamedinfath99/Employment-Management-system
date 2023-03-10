@@ -119,6 +119,8 @@ const Register = () => {
               <option value="">--Select Employee Type--</option>
               <option value="Full Time">Full Time</option>
               <option value="Part Time">Part Time</option>
+              <option value="Contract Basis">Contract Basis</option>
+              <option value="Other">Other</option>
             </select>
           </div>
 
@@ -151,7 +153,7 @@ const Register = () => {
           </div>
 
           <div className='registerButton d-flex justify-content-end'>
-            <span className='cancelBtn'>Cancel</span>
+            <a className='cancelBtn' href="/">Cancel</a>
             <button type="submit" className="btn btn-primary" onClick={adddata}>Add People</button>
           </div>
 

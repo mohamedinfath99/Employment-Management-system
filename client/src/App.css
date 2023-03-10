@@ -45,4 +45,13 @@
 .cancelBtn{
     margin-right: 10px;
     color: blue;
+    text-decoration: none;
+}
+
+.deleteButton{
+    color: red;
+}
+
+.editButton{
+    text-decoration: none;
 }
